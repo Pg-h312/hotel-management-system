@@ -1,0 +1,124 @@
+{
+  "info": {
+    "name": "Hotel Management System API",
+    "_postman_id": "8f1bdf0d-8c5b-4ef4-8d9c-1caa2d7c7e11",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "roomId",
+      "value": "REPLACE_WITH_ROOM_ID"
+    },
+    {
+      "key": "bookingId",
+      "value": "REPLACE_WITH_BOOKING_ID"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "Dashboard Stats",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/dashboard"
+      }
+    },
+    {
+      "name": "Create Room",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"roomNumber\":\"101\",\"type\":\"Deluxe\",\"pricePerNight\":3500,\"capacity\":2}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/rooms"
+      }
+    },
+    {
+      "name": "Get All Rooms",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/rooms"
+      }
+    },
+    {
+      "name": "Create Booking",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"guestName\":\"Aarav Sharma\",\"email\":\"aarav@example.com\",\"roomId\":\"{{roomId}}\",\"checkIn\":\"2026-12-01\",\"checkOut\":\"2026-12-03\",\"guests\":2}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/bookings"
+      }
+    },
+    {
+      "name": "Get All Bookings",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/bookings"
+      }
+    },
+    {
+      "name": "Update Booking Status",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"status\":\"Checked-in\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/bookings/{{bookingId}}/status"
+      }
+    },
+    {
+      "name": "Delete Room",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/rooms/{{roomId}}"
+      }
+    }
+  ]
+}
